@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph2"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/NoteListFirstFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/NoteListFirstFragment"
         android:name="com.example.notekeeper.NoteListFirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="NoteKeeper"
         tools:layout="@layout/fragment_note_first"/>
 </navigation>
