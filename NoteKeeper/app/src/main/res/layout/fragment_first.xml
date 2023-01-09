@@ -6,18 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <EditText
-        android:id="@+id/editText_first2"
+    <Spinner
+        android:id="@+id/spinnerCourses"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textNoteTitle"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="Note Title"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_first"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerCourses"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCourses"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCourses" />
+
+    <EditText
+        android:id="@+id/textNoteText"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Note Text"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerCourses"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinner_first"
-        app:layout_constraintTop_toBottomOf="@+id/editText_first" />
+        app:layout_constraintStart_toStartOf="@+id/spinnerCourses"
+        app:layout_constraintTop_toBottomOf="@+id/textNoteTitle" />
 
     <Button
         android:id="@+id/button_first"
@@ -28,26 +54,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner_first"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_first"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_first"
-        app:layout_constraintStart_toStartOf="@+id/spinner_first"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_first" />
 </androidx.constraintlayout.widget.ConstraintLayout>
