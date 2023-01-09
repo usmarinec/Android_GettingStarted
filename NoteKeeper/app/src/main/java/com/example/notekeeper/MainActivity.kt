@@ -9,6 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import com.example.notekeeper.databinding.ActivityMainBinding
 
@@ -31,7 +33,18 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
+        //Create Spinner Adapter Layout~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        val dm = DataManager()
+        val adapterCourses = ArrayAdapter<CourseInfo>(this,
+            android.R.layout.simple_spinner_item,
+            dm.courses.values.toList()
+        )
+        adapterCourses.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+        val spinnerCourses: Spinner = findViewById(R.id.spinnerCourses)
+        spinnerCourses.adapter = adapterCourses
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
