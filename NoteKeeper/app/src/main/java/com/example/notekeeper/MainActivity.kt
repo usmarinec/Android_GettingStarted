@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val spinnerCourses: Spinner = findViewById(R.id.spinnerCourses)
         spinnerCourses.adapter = adapterCourses
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //
+        //determine activity intent (new note or existing note from listView)
         notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
         if(notePosition != POSITION_NOT_SET)
             displayNote(spinnerCourses)
