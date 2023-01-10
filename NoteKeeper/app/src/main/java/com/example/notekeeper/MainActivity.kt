@@ -76,10 +76,20 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        val spinnerCourses: Spinner = findViewById(R.id.spinnerCourses)
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_next -> {
+                moveNext(spinnerCourses)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun moveNext(spinnerCourses: Spinner) {
+        ++notePosition
+        displayNote(spinnerCourses)
     }
 
     override fun onSupportNavigateUp(): Boolean {
