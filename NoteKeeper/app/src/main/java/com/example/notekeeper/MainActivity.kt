@@ -1,5 +1,6 @@
 package com.example.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -46,10 +48,21 @@ class MainActivity : AppCompatActivity() {
         val spinnerCourses: Spinner = findViewById(R.id.spinnerCourses)
         spinnerCourses.adapter = adapterCourses
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        //Set Home Button action
+        val buttonFirst: Button = findViewById(R.id.button_first)
+        buttonFirst.setOnClickListener { view ->
+            val activityIntent = Intent(this, NoteListActivity::class.java)
+            startActivity(activityIntent)
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         //determine activity intent (new note or existing note from listView)
         notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
         if(notePosition != POSITION_NOT_SET)
             displayNote(spinnerCourses)
+        else {
+            DataManager.notes.add(NoteInfo())
+            notePosition = DataManager.notes.lastIndex
+        }
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 
@@ -108,5 +121,23 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes[notePosition]
+
+        val textNoteTitle: EditText = findViewById(R.id.textNoteTitle)
+        note.title = textNoteTitle.text.toString()
+
+        val textNoteText: EditText = findViewById(R.id.textNoteText)
+        note.text = textNoteText.text.toString()
+
+        val spinnerCourses: Spinner = findViewById(R.id.spinnerCourses)
+        note.course = spinnerCourses.selectedItem as CourseInfo
     }
 }
