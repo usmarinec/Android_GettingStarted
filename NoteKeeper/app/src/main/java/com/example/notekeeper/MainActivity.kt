@@ -90,6 +90,18 @@ class MainActivity : AppCompatActivity() {
     private fun moveNext(spinnerCourses: Spinner) {
         ++notePosition
         displayNote(spinnerCourses)
+        invalidateOptionsMenu()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if(notePosition >= DataManager.notes.lastIndex){
+            val menuItem = menu?.findItem(R.id.action_next)
+            if(menuItem != null){
+                menuItem.icon = getDrawable(R.drawable.ic_baseline_block_white_24)
+                menuItem.isEnabled = false
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onSupportNavigateUp(): Boolean {
